@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./blockhouse
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend_django
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend_django:/app
+    environment:
+      - PYTHONUNBUFFERED=1
